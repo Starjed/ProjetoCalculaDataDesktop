@@ -30,7 +30,6 @@ Column (
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-    LabelView
 
 }
     return calculaData(event)
