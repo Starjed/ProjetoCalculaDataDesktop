@@ -17,10 +17,11 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import java.text.SimpleDateFormat
 
 
 @Composable             // APARECER A DATA APÓS O CLIQUE DO USUÁRIO NO BOTÃO
-fun botaoCalcula() {
+fun botaoCalcula(text: String) {
 
     var calculo by remember { mutableStateOf(false) }
 
@@ -43,7 +44,7 @@ fun botaoCalcula() {
         Arrangement.Center
 
         AnimatedVisibility(calculo) {
-            boxAparece()
+            boxAparece(text)
         }
 
     }
@@ -52,8 +53,11 @@ fun botaoCalcula() {
 
 //                    BOX APARECERÁ APÓS O CLIQUE DO USUARIO
 @Composable
-fun boxAparece() {
-    val converter = Conversor().converte(1, 2, 3)
+fun boxAparece(text: String) {
+    var formatter = SimpleDateFormat("dd/MM/yyyy")
+
+
+    val converter = Conversor().converte("paosdk")
 
     MaterialTheme {
 
@@ -78,7 +82,7 @@ fun boxAparece() {
 
         ) {
             Text(
-                "a diferença entre datas é $converter",
+                "a diferença entre as datas é $converter + $text",
                 fontFamily = FontFamily.SansSerif,
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold

@@ -1,12 +1,7 @@
 package br.com.biel
 
-import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.desktop.ui.tooling.preview.Preview
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
 
 import androidx.compose.material.*
 import androidx.compose.material.Text
@@ -15,41 +10,20 @@ import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.Alignment.Companion.BottomCenter
-import androidx.compose.ui.Alignment.Companion.BottomEnd
-import androidx.compose.ui.Alignment.Companion.Center
-import androidx.compose.ui.Alignment.Companion.CenterHorizontally
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.autofill.Autofill
-import androidx.compose.ui.autofill.AutofillType
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.ui.layout.VerticalAlignmentLine
-import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.font.FontStyle
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import calculaData
-import java.awt.Color.*
-
-import java.awt.Label
-import java.awt.SystemColor.text
+import java.text.SimpleDateFormat
 import java.util.*
-import javax.swing.text.LabelView
 
 @Composable
 @Preview
 
 
 fun App() {
-    var text3 by remember { mutableStateOf("calcule a data!!") }
 
-    val calcularDia = CalcularData()
+    val formatter = SimpleDateFormat("dd/MM/yyyy")
+    var text3 by remember { mutableStateOf("calcule a data!!") }
+    var textoData by remember { mutableStateOf("") }
 
     MaterialTheme {
 
@@ -75,16 +49,15 @@ fun App() {
 
             )
         {
-            var text by remember { mutableStateOf("") }
             val maxChar = 8
 
 
             TextField(
 
 
-                value = text,
+                value = textoData,
                 onValueChange = {
-                    if (it.length <= maxChar) text = it
+                    if (it.length <= maxChar) textoData = it
                 },
                 visualTransformation = DateTransformation(),
                 label = {
@@ -128,7 +101,7 @@ fun App() {
 //                    boxAparece()
 
                 }) {
-                    Text(text3)
+                    Text(textoData)
                 }
 
             }       // FIM DOS PARAMETROS DO BOTÃO DE CLICK
@@ -137,7 +110,10 @@ fun App() {
 
 
     }
-    botaoCalcula()
+
+    botaoCalcula(textoData)
+
+
 }
 
 // FIM DO APP()
